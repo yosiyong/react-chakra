@@ -9,10 +9,9 @@ export const Header: VFC = memo(() => {
   const history = useHistory();
 
   const onClickHome = useCallback(() => history.push("/home"), [history]);
-  const onClickUserManagement = useCallback(
-    () => history.push("/home/user_management"),
-    [history]
-  );
+  const onClickUserList = useCallback(() => history.push("/home/user_list"), [
+    history
+  ]);
   const onClickSetting = useCallback(() => history.push("/home/settings"), [
     history
   ]);
@@ -45,7 +44,7 @@ export const Header: VFC = memo(() => {
           display={{ base: "none", md: "flex" }}
         >
           <Box pr={4}>
-            <Link onClick={onClickUserManagement}>ユーザー一覧</Link>
+            <Link onClick={onClickUserList}>ユーザー一覧</Link>
           </Box>
           <Link onClick={onClickSetting}>設定</Link>
         </Flex>
@@ -57,7 +56,7 @@ export const Header: VFC = memo(() => {
         onClose={onClose}
         isOpen={isOpen}
         onClickHome={onClickHome}
-        onClickUserManagement={onClickUserManagement}
+        onClickUserList={onClickUserList}
         onClickSetting={onClickSetting}
       />
     </>
