@@ -11,11 +11,16 @@ import { UserCard } from "../organisms/user/UserCard";
 import { useAllUsers } from "../../hooks/useAllUsers";
 import { UserDetail } from "../organisms/user/UserDetail";
 import { useSelectUser } from "../../hooks/useSelectUser";
+import { useLoginUser } from "../../hooks/useLoginUser";
 
 export const UserList: VFC = memo(() => {
-  const { getUsers, loading, users } = useAllUsers();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { getUsers, loading, users } = useAllUsers();
   const { onSelectUser, selectedUser } = useSelectUser();
+
+  //グローバルコンテキスト内のログインユーザー取得
+  const { loginUser } = useLoginUser();
+  console.log(loginUser);
 
   useEffect(() => getUsers(), []);
 
@@ -48,7 +53,12 @@ export const UserList: VFC = memo(() => {
           ))}
         </Wrap>
       )}
-      <UserDetail onClose={onClose} isOpen={isOpen} user={selectedUser} />
+      <UserDetail
+        onClose={onClose}
+        isOpen={isOpen}
+        user={selectedUser}
+        isAdmin={loginUser?.isAdmin}
+      />
     </>
   );
 });

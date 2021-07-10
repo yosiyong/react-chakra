@@ -10,6 +10,7 @@ export const useAllUsers = () => {
 
   const getUsers = useCallback(() => {
     setLoading(true);
+
     axios
       .get<Array<User>>("https://jsonplaceholder.typicode.com/users")
       .then((res) => {
